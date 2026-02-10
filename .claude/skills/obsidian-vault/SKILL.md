@@ -12,7 +12,7 @@ description: |
 
 | 항목 | 경로 |
 |------|------|
-| vault | `~/DocumentsLocal/msbaek_vault/` |
+| vault | `~/OneDrive/my-obsidian-vault/` |
 | vault-intelligence | `~/git/vault-intelligence/` |
 
 ## markdown-oxide LSP 활용

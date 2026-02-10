@@ -147,7 +147,7 @@ period: "2025-{MM}"
 ## 월간 학습 하이라이트
 ```
 
-저장 위치: `~/DocumentsLocal/msbaek_vault/notes/dailies/2025/`
+저장 위치: `~/OneDrive/my-obsidian-vault/notes/dailies/2025/`
 
 ---
 

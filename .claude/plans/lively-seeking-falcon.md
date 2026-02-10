@@ -96,7 +96,7 @@ python3 orchestrate.py daily-logger --date-range 2025-06-20:2026-01-15 --keep-se
 
 2. **Daily Note 확인**: 생성된 파일 내용 검토
    ```bash
-   ls -la ~/DocumentsLocal/msbaek_vault/notes/dailies/2026-01-1*.md
+   ls -la ~/OneDrive/my-obsidian-vault/notes/dailies/2026-01-1*.md
    ```
 
 3. **전체 실행**: 테스트 성공 후 전체 범위 실행

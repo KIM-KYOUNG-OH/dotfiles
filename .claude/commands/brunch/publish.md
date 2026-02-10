@@ -70,7 +70,7 @@
 브런치 발행 전/후에 Obsidian vault에 저장하시겠어요?
 
 저장 위치 제안:
-- `~/DocumentsLocal/msbaek_vault/003-RESOURCES/BRUNCH/[제목].md`
+- `~/OneDrive/my-obsidian-vault/003-RESOURCES/BRUNCH/[제목].md`
 
 저장하면 다음이 추가됩니다:
 - 브런치 URL (발행 후)

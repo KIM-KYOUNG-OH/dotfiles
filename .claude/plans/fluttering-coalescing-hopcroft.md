@@ -128,7 +128,7 @@ mkdir -p docs/user docs/dev/archive archive/ai-practice
 
 ## 개요
 - 기간: 2025-01-03 ~ 2026-01-04
-- 대상: 286개 문서 (~/DocumentsLocal/msbaek_vault/003-RESOURCES/AI)
+- 대상: 286개 문서 (~/OneDrive/my-obsidian-vault/003-RESOURCES/AI)
 - 결과: 2,319개 AI 기법 추출
 
 ## 카테고리별 주요 기법

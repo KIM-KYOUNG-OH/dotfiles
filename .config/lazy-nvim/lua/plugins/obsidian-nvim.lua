@@ -21,7 +21,7 @@ return {
     workspaces = {
       {
         name = "msbaek_vault",
-        path = vim.fn.expand("~/DocumentsLocal/msbaek_vault"),
+        path = vim.fn.expand("~/OneDrive/my-obsidian-vault"),
       },
     },
     use_default_keymaps = false,
@@ -163,7 +163,7 @@ return {
     -- Optional, for templates (see below).
     templates = {
       -- folder = "Template",
-      folder = vim.fn.expand("~/DocumentsLocal/msbaek_vault/Template"),
+      folder = vim.fn.expand("~/OneDrive/my-obsidian-vault/Template"),
       -- date_format = "%Y-%m-%d",
       -- time_format = "%H:%M",
       -- -- A map for custom variables, the key should be the variable and the value a function

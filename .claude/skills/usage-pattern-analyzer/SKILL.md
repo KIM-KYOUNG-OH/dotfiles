@@ -30,7 +30,7 @@ Claude Code 세션 로그 및 stats-cache.json을 분석하여 **도구 사용 �
 | history | `~/.claude/history.jsonl` |
 | transcripts | `~/.claude/transcripts/*.jsonl` |
 | 세션 로그 | `~/.claude/projects/[encoded-path]/*.jsonl` |
-| 출력 | `~/DocumentsLocal/msbaek_vault/analytics/patterns/` |
+| 출력 | `~/OneDrive/my-obsidian-vault/analytics/patterns/` |
 
 ---
 

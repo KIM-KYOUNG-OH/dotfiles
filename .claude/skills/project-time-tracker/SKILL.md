@@ -27,7 +27,7 @@ Claude Code 세션 로그의 타임스탬프를 분석하여 **프로젝트별 �
 | 항목 | 경로 |
 |------|------|
 | 세션 로그 | `~/.claude/projects/[encoded-path]/*.jsonl` |
-| 출력 | `~/DocumentsLocal/msbaek_vault/analytics/time-tracking/` |
+| 출력 | `~/OneDrive/my-obsidian-vault/analytics/time-tracking/` |
 
 ---
 
