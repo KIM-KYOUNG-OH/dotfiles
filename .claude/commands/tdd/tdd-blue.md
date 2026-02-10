@@ -5,7 +5,7 @@ description: TDD Blue 단계 - Tidying 1-4단계 경량 리팩토링
 # TDD Blue 단계: 경량 리팩토링 (Tidying 1-4단계)
 
 ## Tidying 참조 문서
-@/Users/msbaek/DocumentsLocal/msbaek_vault/003-RESOURCES/REFACTORING/Technique/Tidying.md
+@~/OneDrive/my-obsidian-vault/003-RESOURCES/REFACTORING/Technique/Tidying.md
 
 ## 적용 단계 (1-4단계만)
 1. **Reorder**: 관련 코드를 가까이 배치

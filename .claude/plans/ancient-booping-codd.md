@@ -196,7 +196,7 @@ AI의 출력을 설명하도록 강제
 ---
 
 ## 수정할 파일
-- `/Users/msbaek/DocumentsLocal/msbaek_vault/003-RESOURCES/AI/LIMITATIONS/AI-문제점-종합-분석.md`
+- `~/OneDrive/my-obsidian-vault/003-RESOURCES/AI/LIMITATIONS/AI-문제점-종합-분석.md`
 
 ## 검증 방법
 1. 파일 수정 후 해당 섹션 읽기로 내용 확인

@@ -113,7 +113,7 @@
    - 실용적이고 실행 가능한 내용 중심
 
 2. **저장 위치**
-   - `/Users/msbaek/DocumentsLocal/msbaek_vault/notes/newsletters/2026-01-15-weekly.md`
+   - `~/OneDrive/my-obsidian-vault/notes/newsletters/2026-01-15-weekly.md`
    - (newsletters 폴더 없으면 생성)
 
 ## 검증 방법

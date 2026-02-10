@@ -19,11 +19,11 @@
 |------|------|-------------|---------|
 | **Claude Code plans** | `~/.claude/plans/` | 50+개 | ⭐⭐⭐ |
 | **Claude Code projects** | `~/.claude/projects/*/session-memory/summary.md` | 27개 | ⭐⭐⭐ |
-| cc-logs | `/Users/msbaek/DocumentsLocal/msbaek_vault/cc-logs/` | 4개 | ⭐⭐⭐ |
+| cc-logs | `~/OneDrive/my-obsidian-vault/cc-logs/` | 4개 | ⭐⭐⭐ |
 | coffee-time | `/Users/msbaek/git/kt4u/coffee-time/` | 53개 | ⭐⭐⭐ |
 | **Claude Code todos** | `~/.claude/todos/` | 100+개 JSON | ⭐⭐ |
-| daily notes | `/Users/msbaek/DocumentsLocal/msbaek_vault/notes/dailies/2025/` | 191개 | ⭐⭐ |
-| work-log | `/Users/msbaek/DocumentsLocal/msbaek_vault/work-log/` | 466개 | ⭐⭐ |
+| daily notes | `~/OneDrive/my-obsidian-vault/notes/dailies/2025/` | 191개 | ⭐⭐ |
+| work-log | `~/OneDrive/my-obsidian-vault/work-log/` | 466개 | ⭐⭐ |
 | TIL/학습노트 | `997-BOOKS/` 등 | 다수 | ⭐ |
 
 ### 1.1.1 Claude Code 관련 소스 상세
@@ -243,15 +243,15 @@ E. 학습/이해 (Learning)
   - `/Users/msbaek/.claude/todos/` - 100+개 작업 기록 (JSON)
 
 - **수집 대상 (Obsidian vault)**:
-  - `/Users/msbaek/DocumentsLocal/msbaek_vault/cc-logs/`
+  - `~/OneDrive/my-obsidian-vault/cc-logs/`
   - `/Users/msbaek/git/kt4u/coffee-time/`
-  - `/Users/msbaek/DocumentsLocal/msbaek_vault/notes/dailies/2025/`
-  - `/Users/msbaek/DocumentsLocal/msbaek_vault/work-log/`
+  - `~/OneDrive/my-obsidian-vault/notes/dailies/2025/`
+  - `~/OneDrive/my-obsidian-vault/work-log/`
 
 - **산출물 (예정)**:
-  - `/Users/msbaek/DocumentsLocal/msbaek_vault/나의 AI 활용 사례-내부용.md`
-  - `/Users/msbaek/DocumentsLocal/msbaek_vault/나의 AI 활용 사례-이력서용.md`
-  - `/Users/msbaek/DocumentsLocal/msbaek_vault/나의 AI 활용 사례-블로그용.md`
+  - `~/OneDrive/my-obsidian-vault/나의 AI 활용 사례-내부용.md`
+  - `~/OneDrive/my-obsidian-vault/나의 AI 활용 사례-이력서용.md`
+  - `~/OneDrive/my-obsidian-vault/나의 AI 활용 사례-블로그용.md`
 
 ---
 

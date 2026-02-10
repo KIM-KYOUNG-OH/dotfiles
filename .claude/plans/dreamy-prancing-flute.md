@@ -51,7 +51,7 @@ AI가 못하는 것 (High Context)
 ```
 
 ## 수정 대상 파일
-- `/Users/msbaek/DocumentsLocal/msbaek_vault/001-INBOX/BRUNCH/AI시대-신입-개발자-생존법.md`
+- `~/OneDrive/my-obsidian-vault/001-INBOX/BRUNCH/AI시대-신입-개발자-생존법.md`
 
 ## 구체적 수정 내용
 

@@ -16,7 +16,7 @@ You are a specialized Map of Content (MOC) management agent for the msbaek_vault
 
 ## Available Scripts
 
-- `/Users/msbaek/DocumentsLocal/msbaek_vault/.obsidian-tools/scripts/analysis/moc_generator.py` - Main MOC generation script
+- `~/OneDrive/my-obsidian-vault/.obsidian-tools/scripts/analysis/moc_generator.py` - Main MOC generation script
   - `--suggest` flag to identify directories needing MOCs
   - `--directory` and `--title` for specific MOC creation
   - `--create-all` to generate all suggested MOCs
@@ -91,7 +91,7 @@ Brief description of this knowledge domain and its importance.
 
 1. Check for directories needing MOCs:
    ```bash
-   cd /Users/msbaek/DocumentsLocal/msbaek_vault
+   cd ~/OneDrive/my-obsidian-vault
    python3 .obsidian-tools/scripts/analysis/moc_generator.py --suggest
    ```
 

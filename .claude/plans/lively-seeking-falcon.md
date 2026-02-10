@@ -30,8 +30,8 @@ processing:
   dates_per_agent: 55
 
 paths:
-  vault_root: "/Users/msbaek/DocumentsLocal/msbaek_vault"
-  dailies: "/Users/msbaek/DocumentsLocal/msbaek_vault/notes/dailies"
+  vault_root: "~/OneDrive/my-obsidian-vault"
+  dailies: "~/OneDrive/my-obsidian-vault/notes/dailies"
 ```
 
 #### 1.2 agent_template.py

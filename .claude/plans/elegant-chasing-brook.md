@@ -138,7 +138,7 @@
 
 ### 1단계: 폴더 생성
 ```bash
-mkdir -p /Users/msbaek/DocumentsLocal/msbaek_vault/003-RESOURCES/HISTORY
+mkdir -p ~/OneDrive/my-obsidian-vault/003-RESOURCES/HISTORY
 ```
 
 ### 2단계: 기술별 자료 조사

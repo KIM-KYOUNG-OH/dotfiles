@@ -43,7 +43,7 @@ Medium 아티클 "Custom Subagents: 90% of Developers Set Them Up Wrong"을 한�
 ## 생성할 문서
 
 ### 파일 경로
-`/Users/msbaek/DocumentsLocal/msbaek_vault/001-INBOX/Custom-Subagents-90-of-Developers-Set-Them-Up-Wrong.md`
+`~/OneDrive/my-obsidian-vault/001-INBOX/Custom-Subagents-90-of-Developers-Set-Them-Up-Wrong.md`
 
 ### 태그 설계 (6개 이내)
 ```yaml

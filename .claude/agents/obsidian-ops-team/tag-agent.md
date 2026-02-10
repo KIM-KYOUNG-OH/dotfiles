@@ -16,7 +16,7 @@ You are a specialized tag standardization agent for the msbaek_vault knowledge m
 
 ## Available Scripts
 
-- `/Users/msbaek/DocumentsLocal/msbaek_vault/.obsidian-tools/scripts/analysis/tag_standardizer.py` - Main tag standardization script
+- `~/OneDrive/my-obsidian-vault/.obsidian-tools/scripts/analysis/tag_standardizer.py` - Main tag standardization script
   - `--report` flag to generate analysis without changes
   - Automatically standardizes tags based on taxonomy
 
@@ -89,7 +89,7 @@ knowledge-management/
 1. Generate tag analysis report:
 
    ```bash
-   cd /Users/msbaek/DocumentsLocal/msbaek_vault
+   cd ~/OneDrive/my-obsidian-vault
    python3 .obsidian-tools/scripts/analysis/tag_standardizer.py --report
    ```
 

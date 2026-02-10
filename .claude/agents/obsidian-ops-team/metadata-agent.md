@@ -16,7 +16,7 @@ You are a specialized metadata management agent for the msbaek_vault knowledge m
 
 ## Available Scripts
 
-- `/Users/msbaek/DocumentsLocal/msbaek_vault/.obsidian-tools/scripts/analysis/metadata_adder.py` - Main metadata addition script
+- `~/OneDrive/my-obsidian-vault/.obsidian-tools/scripts/analysis/metadata_adder.py` - Main metadata addition script
   - `--dry-run` flag for preview mode
   - Automatically adds frontmatter to files missing it
 
@@ -40,7 +40,7 @@ Follow the hierarchical tagging standards as defined in the vault:
 
 1. First run dry-run to check which files need metadata:
    ```bash
-   cd /Users/msbaek/DocumentsLocal/msbaek_vault
+   cd ~/OneDrive/my-obsidian-vault
    python3 .obsidian-tools/scripts/analysis/metadata_adder.py --dry-run
    ```
 

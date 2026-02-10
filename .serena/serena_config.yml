@@ -57,7 +57,7 @@ token_count_estimator: TIKTOKEN_GPT4O
 # the list of registered project paths (updated automatically).
 projects:
 - /Users/msbaek
-- /Users/msbaek/DocumentsLocal/msbaek_vault
+- ~/OneDrive/my-obsidian-vault
 - /Users/msbaek/dotfiles
 - /Users/msbaek/git/kt4u/BO-query
 - /Users/msbaek/git/kt4u/cs-rag
