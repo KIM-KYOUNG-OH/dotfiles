@@ -76,7 +76,7 @@ echo "대상 날짜: $TARGET_DATE"
 
 2. **Daily Note 경로 확인**
 ```bash
-DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
+DAILY_NOTE="$HOME/OneDrive/my-obsidian-vault/notes/dailies/${TARGET_DATE}.md"
 ```
 
 ---

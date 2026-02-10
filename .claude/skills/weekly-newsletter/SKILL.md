@@ -127,7 +127,7 @@ echo "대상 기간: $SATURDAY (토) ~ $FRIDAY (금)"
 
 2. **출력 경로 확인**
 ```bash
-OUTPUT_FILE="$HOME/DocumentsLocal/msbaek_vault/newsletters/${WEEK_NUM}-newsletter.md"
+OUTPUT_FILE="$HOME/OneDrive/my-obsidian-vault/newsletters/${WEEK_NUM}-newsletter.md"
 ```
 
 ---
