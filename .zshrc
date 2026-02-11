@@ -121,5 +121,6 @@ alias brewu='brew upgrade; brew cleanup'
 
 source ~/.zsh.after/msbaek.zsh
 source ~/.zsh.after/ktown4u.zsh
+source ~/.zsh.after/kko.zsh
 # source ~/.zsh.after/claude_desktop_config.zsh
 

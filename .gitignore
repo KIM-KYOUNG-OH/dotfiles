@@ -10,6 +10,7 @@
 .gitconfig.user
 .ssh/config
 # .zsh.after/msbaek.zsh
+.zsh.after/kko.zsh
 
 # ======================
 # Claude 관련 디렉토리
