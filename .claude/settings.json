@@ -11,7 +11,7 @@
     ],
     "deny": []
   },
-  "model": "opusplan",
+  "model": "claude-opus-4-6",
   "hooks": {
     "PreToolUse": [
       {
@@ -59,10 +59,10 @@
     "command": "npx -y ccstatusline@latest",
     "padding": 0
   },
-  "feedbackSurveyState": {
-    "lastShownTime": 1754086039192
-  },
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true
+  },
+  "feedbackSurveyState": {
+    "lastShownTime": 1754086039192
   }
 }
