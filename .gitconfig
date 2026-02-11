@@ -96,74 +96,70 @@
 #   svnl = svn log --oneline --show-commit
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
-# [mergetool]
-#   prompt = false
-# [mergetool "mvimdiff"]
-#   cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
-#   keepbackup=false
-# [merge]
-#   summary = true
-#   verbosity = 1
-#   tool = mvimdiff
-#   conflictstyle = diff3
-# [apply]
-#   whitespace = nowarn
-# [branch]
-#   autosetupmerge = true
-# [push]
-#   # 'git push' will push the current branch to its tracking branch
-#   # the usual default is to push all branches
-#   default = upstream
-# [core]
-# 	autocrlf = input
-#   editor = vim
-#   excludesfile = ~/.gitignore
-# 	# pager = diff-so-fancy | less --tabs=4 -RFX
-# 	pager = delta
-# [advice]
-#   statusHints = false
-# [diff]
-#   # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
-#   # instead of a/b/c/d as prefixes for patches
-#   mnemonicprefix = true
-# 	algorithm = patience
-# 	colorMoved = default
-# [rerere]
-#   # Remember my merges
-#   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
-#   enabled = true
-# [include]
-#     path = ~/.gitconfig.user
+[mergetool]
+  prompt = false
+[mergetool "mvimdiff"]
+  cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
+  keepbackup=false
+[merge]
+  summary = true
+  verbosity = 1
+  tool = mvimdiff
+  conflictstyle = diff3
+[apply]
+  whitespace = nowarn
+[branch]
+  autosetupmerge = true
+[push]
+  # 'git push' will push the current branch to its tracking branch
+  # the usual default is to push all branches
+  default = upstream
+[core]
+	autocrlf = input
+  editor = vim
+  excludesfile = ~/.gitignore
+	# pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
+[advice]
+  statusHints = false
+[diff]
+  # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
+  # instead of a/b/c/d as prefixes for patches
+  mnemonicprefix = true
+	algorithm = patience
+	colorMoved = default
+[rerere]
+  # Remember my merges
+  # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
+  enabled = true
+[include]
+    path = ~/.gitconfig.user
 # [pull]
 # 	rebase = true
-# [init]
-# 	defaultBranch = main
-# [interactive]
-# 	# diffFilter = diff-so-fancy --patch
-# 	diffFilter = delta --color-only
-# [color "diff-highlight"]
-# 	oldNormal = red bold
-# 	oldHighlight = red bold 52
-# 	newNormal = green bold
-# 	newHighlight = green bold 22
-# [icdiff]
-# 	options = --highlight --line-numbers
-# [delta]
-# 	navigate = true
-# 	side-by-side = true
-# 	# use n and N to move between diff sections
-# 	# GitHub Light theme for better readability
-# 	syntax-theme = GitHub
-# 	light = true
-# 	# Previous: auto-detect mode
-# 	# dark = true
-# [filter "lfs"]
-# 	process = git-lfs filter-process
-# 	required = true
-# 	clean = git-lfs clean -- %f
-# 	smudge = git-lfs smudge -- %f
+[init]
+	defaultBranch = main
+[interactive]
+	# diffFilter = diff-so-fancy --patch
+	diffFilter = delta --color-only
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[icdiff]
+	options = --highlight --line-numbers
+[delta]
+	navigate = true
+	side-by-side = true
+	# use n and N to move between diff sections
+	# GitHub Light theme for better readability
+	syntax-theme = GitHub
+	light = true
+	# Previous: auto-detect mode
+	# dark = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+
