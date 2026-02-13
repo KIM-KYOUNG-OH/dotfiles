@@ -76,10 +76,8 @@ Read the plan file used in this project to understand the work completed so far 
 
 <session-start-hook>
   <EXTREMELY_IMPORTANT>
-  You have Superpowers.
-
-**RIGHT NOW, go read**: @/Users/msbaek/.claude/plugins/cache/claude-plugins-official/superpowers/4.2.0/skills/using-superpowers/SKILL.md
-</EXTREMELY_IMPORTANT>
+  You have Superpowers. Invoke `/superpowers:using-superpowers` skill at session start.
+  </EXTREMELY_IMPORTANT>
 </session-start-hook>
 
 ### when executing a new task
