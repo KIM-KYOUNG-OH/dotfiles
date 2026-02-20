@@ -186,16 +186,8 @@
                                     "key_code": "right_command",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "to": [
-                                    {
-                                        "key_code": "right_command"
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "f18"
-                                    }
-                                ],
+                                "to": [{ "key_code": "right_command" }],
+                                "to_if_alone": [{ "key_code": "f18" }],
                                 "type": "basic"
                             }
                         ]
@@ -347,11 +339,25 @@
                         "product_id": 33366,
                         "vendor_id": 51984
                     }
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 45921,
+                        "vendor_id": 1133
+                    },
+                    "ignore": false,
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "right_command" },
+                            "to": [{ "key_code": "f18" }]
+                        }
+                    ]
                 }
             ],
             "name": "Default profile",
             "selected": true,
-            "simple_modifications": [],
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         }
     ]

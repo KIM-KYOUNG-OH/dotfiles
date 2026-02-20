@@ -1,3 +1,71 @@
+# Behavioral Guidelines (HIGHEST PRIORITY)
+
+Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
+
+**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+
+## 1. Think Before Coding
+
+**Don't assume. Don't hide confusion. Surface tradeoffs.**
+
+Before implementing:
+- State your assumptions explicitly. If uncertain, ask.
+- If multiple interpretations exist, present them - don't pick silently.
+- If a simpler approach exists, say so. Push back when warranted.
+- If something is unclear, stop. Name what's confusing. Ask.
+
+## 2. Simplicity First
+
+**Minimum code that solves the problem. Nothing speculative.**
+
+- No features beyond what was asked.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for impossible scenarios.
+- If you write 200 lines and it could be 50, rewrite it.
+
+Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+
+## 3. Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.**
+
+When editing existing code:
+- Don't "improve" adjacent code, comments, or formatting.
+- Don't refactor things that aren't broken.
+- Match existing style, even if you'd do it differently.
+- If you notice unrelated dead code, mention it - don't delete it.
+
+When your changes create orphans:
+- Remove imports/variables/functions that YOUR changes made unused.
+- Don't remove pre-existing dead code unless asked.
+
+The test: Every changed line should trace directly to the user's request.
+
+## 4. Goal-Driven Execution
+
+**Define success criteria. Loop until verified.**
+
+Transform tasks into verifiable goals:
+- "Add validation" → "Write tests for invalid inputs, then make them pass"
+- "Fix the bug" → "Write a test that reproduces it, then make it pass"
+- "Refactor X" → "Ensure tests pass before and after"
+
+For multi-step tasks, state a brief plan:
+```
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+```
+
+Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+
+---
+
+**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+
+---
+
 ## Ground Rule
 
 ### when starting a new session
@@ -8,10 +76,8 @@ Read the plan file used in this project to understand the work completed so far 
 
 <session-start-hook>
   <EXTREMELY_IMPORTANT>
-  You have Superpowers.
-
-**RIGHT NOW, go read**: @/Users/msbaek/.claude/plugins/cache/claude-plugins-official/superpowers/4.2.0/skills/using-superpowers/SKILL.md
-</EXTREMELY_IMPORTANT>
+  You have Superpowers. Invoke `/superpowers:using-superpowers` skill at session start.
+  </EXTREMELY_IMPORTANT>
 </session-start-hook>
 
 ### when executing a new task
@@ -19,14 +85,6 @@ Read the plan file used in this project to understand the work completed so far 
 <when-executing-a-new-task>
 Each task is executed by launching a new sub-agent, preventing context exhaustion in the main session.
 </when-executing-a-new-task>
-
-### Action Principles
-
-Only implement changes when explicitly requested. When unclear, investigate and recommend first.
-
-<do_not_act_before_instructions>
-Do not jump into implementation or change files unless clearly instructed to make changes. When the user's intent is ambiguous, default to providing information, ask question to user, doing research, and providing recommendations rather than taking action. Only proceed with edits, modifications, or implementations when the user explicitly requests them.
-</do_not_act_before_instructions>
 
 ### Code Investigation
 
@@ -38,15 +96,6 @@ ALWAYS read and understand relevant files before proposing code edits. Be rigoro
 </investigate_before_answering>
 
 ### Quality Control
-
-Only implement what's requested. No over-engineering, hardcoding, or unnecessary file creation.
-
-<avoid_overengineering>
-Avoid over-engineering. Only make changes that are directly requested or clearly necessary. Keep solutions simple and focused.
-Don't add features, refactor code, or make "improvements" beyond what was asked. A bug fix doesn't need surrounding code cleaned up. A simple feature doesn't need extra configurability.
-Don't add error handling, fallbacks, or validation for scenarios that can't happen. Trust internal code and framework guarantees. Only validate at system boundaries (user input, external APIs). Don't use feature flags or backwards-compatibility shims when you can just change the code.
-Don't create helpers, utilities, or abstractions for one-time operations. Don't design for hypothetical future requirements. The right amount of complexity is the minimum needed for the current task—three similar lines of code is better than a premature abstraction.
-</avoid_overengineering>
 
 <avoid_hardcoding_for_tests>
 Please write a high-quality, general-purpose solution using the standard tools available. Do not create helper scripts or workarounds to accomplish the task more efficiently. Implement a solution that works correctly for all valid inputs, not just the test cases. Do not hard-code values or create solutions that only work for specific test inputs. Instead, implement the actual logic that solves the problem generally.
@@ -128,31 +177,40 @@ Handle Korean commit messages properly to avoid encoding issues.
 <git_commit_messages>
 When creating git commits with Korean (or any non-ASCII) messages:
 
-1. ALWAYS use a temporary file for commit messages to prevent encoding issues
-2. Write the commit message to a temporary file (e.g., `/tmp/commit-msg.txt`)
-3. Use `git commit -F <file>` to read the message from the file
-4. Clean up the temporary file after committing
+1. ALWAYS use the Write tool to create a temporary file for commit messages
+2. Use `git commit -F <file>` to read the message from the file
+3. Clean up the temporary file after committing
+
+**CRITICAL**: Use the Write tool, NOT bash heredoc (`cat << EOF`), to ensure proper UTF-8 encoding.
 
 Example workflow:
-```bash
-# Write commit message to temp file
-cat > /tmp/commit-msg.txt << 'EOF'
+```
+Step 1: Use Write tool to create temp file
+- Tool: Write
+- file_path: /tmp/commit-msg-unique.txt
+- content: [Your commit message with Korean]
+
+Step 2: Commit using the file
+- bash: git add <files> && git commit -F /tmp/commit-msg-unique.txt
+
+Step 3: Clean up
+- bash: rm /tmp/commit-msg-unique.txt
+```
+
+Example commit message format:
+```
 feat: 한글 커밋 메시지 예제
 
 - 첫 번째 변경사항
 - 두 번째 변경사항
 
 Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
-EOF
-
-# Commit using the file
-git commit -F /tmp/commit-msg.txt
-
-# Clean up
-rm /tmp/commit-msg.txt
 ```
 
-This ensures proper UTF-8 encoding for Korean characters in commit messages.
+**Why Write tool works better:**
+- Write tool preserves UTF-8 encoding natively
+- Bash heredoc can cause Unicode escape sequences for non-ASCII characters
+- Write tool is more reliable across different shell configurations
 </git_commit_messages>
 
 ### Tool Preferences
