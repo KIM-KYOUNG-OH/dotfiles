@@ -8,8 +8,6 @@ triggers:
   - technical documentation
   - implementation guide
   - architecture guide
-requires:
-  - obsidian-document-policy
 ---
 
 # Technical Documentation Guide Generator
@@ -61,7 +59,7 @@ requires:
 
 ### 5. 문서 생성 및 저장
 
-정리된 정보를 구조화된 마크다운 문서로 생성하고, **`obsidian-document-policy` 스킬을 참조하여 Obsidian vault에 저장**합니다.
+정리된 정보를 구조화된 마크다운 문서로 생성하고, **Read 도구로 `~/.claude/policies/obsidian-document-policy.md`를 읽어 vault 경로, 파일명 규칙, 태그 체계, frontmatter 구조를 확인한 후 Obsidian vault에 저장**합니다.
 
 ## 기술 문서 템플릿
 
@@ -439,7 +437,7 @@ export KEY=value
 
 ## 문서 저장
 
-기술 문서 작성 완료 후, `obsidian-document-policy` 스킬을 참조하여 다음과 같이 저장합니다:
+기술 문서 작성 완료 후, Read 도구로 `~/.claude/policies/obsidian-document-policy.md`를 읽어 저장 규칙을 확인하고 다음과 같이 저장합니다:
 
 1. **프로젝트명 확인**: 사용자에게 프로젝트명 재확인
 2. **문서명 확인**: 의미있는 파일명 제안 (예: `redis-caching-guide.md`)
@@ -453,7 +451,7 @@ export KEY=value
 4. **파일명**: 사용자 지정 또는 `{문서명}.md`
 5. **저장 경로**: `~/OneDrive/my-obsidian-vault/002-PROJECTS/{프로젝트명}/`
 
-자세한 저장 규칙은 `obsidian-document-policy` 스킬 참조.
+자세한 저장 규칙은 `~/.claude/policies/obsidian-document-policy.md` 참조.
 
 ## 대상 독자별 작성 요령
 
@@ -538,5 +536,5 @@ Assistant:
 2. [코드베이스 분석] 필요시 현재 프로젝트 구조 파악
 3. [기술 조사] 필요시 공식 문서, 베스트 프랙티스 조사
 4. [문서 구조화] 개요, 배경, 아키텍처, 구현 가이드 작성
-5. [문서 생성] obsidian-document-policy 참조하여 저장
+5. [문서 생성] Read `~/.claude/policies/obsidian-document-policy.md` 후 저장
 ```

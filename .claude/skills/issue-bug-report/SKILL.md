@@ -7,8 +7,6 @@ triggers:
   - 장애 이슈
   - bug report
   - error analysis
-requires:
-  - obsidian-document-policy
 ---
 
 # Bug Report Generator
@@ -52,7 +50,7 @@ requires:
 
 ### 5. 문서 생성 및 저장
 
-분석 결과를 구조화된 마크다운 문서로 생성하고, **`obsidian-document-policy` 스킬을 참조하여 Obsidian vault에 저장**합니다.
+분석 결과를 구조화된 마크다운 문서로 생성하고, **Read 도구로 `~/.claude/policies/obsidian-document-policy.md`를 읽어 vault 경로, 파일명 규칙, 태그 체계, frontmatter 구조를 확인한 후 Obsidian vault에 저장**합니다.
 
 ## 버그 리포트 템플릿
 
@@ -161,7 +159,7 @@ requires:
 
 ## 문서 저장
 
-버그 리포트 작성 완료 후, `obsidian-document-policy` 스킬을 참조하여 다음과 같이 저장합니다:
+버그 리포트 작성 완료 후, Read 도구로 `~/.claude/policies/obsidian-document-policy.md`를 읽어 저장 규칙을 확인하고 다음과 같이 저장합니다:
 
 1. **프로젝트명 확인**: 사용자에게 프로젝트명 재확인
 2. **Frontmatter 생성**:
@@ -172,7 +170,7 @@ requires:
 3. **파일명**: `bug-report-{YYYY-MM-DD_HH-mm}.md`
 4. **저장 경로**: `~/OneDrive/my-obsidian-vault/002-PROJECTS/{프로젝트명}/`
 
-자세한 저장 규칙은 `obsidian-document-policy` 스킬 참조.
+자세한 저장 규칙은 `~/.claude/policies/obsidian-document-policy.md` 참조.
 
 ## 분석 시 주의사항
 
@@ -197,5 +195,5 @@ Assistant:
 2. [로그 분석] 에러 타입, 발생 위치, 호출 스택 분석
 3. [근본 원인] 직접 원인, 근본 원인, 영향 범위 파악
 4. [해결 방안] 임시 해결책, 근본 해결책, 예방 방안 제시
-5. [문서 생성] obsidian-document-policy 참조하여 저장
+5. [문서 생성] Read `~/.claude/policies/obsidian-document-policy.md` 후 저장
 ```

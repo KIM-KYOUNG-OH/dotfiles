@@ -7,8 +7,6 @@ triggers:
   - 테스트 리포트
   - qa document
   - test report
-requires:
-  - obsidian-document-policy
 ---
 
 # QA Document Generator
@@ -47,7 +45,7 @@ QA 테스트 결과, 이슈 내용, 조치 사항을 분석하여 구조화된 Q
 
 ### 4. 문서 생성 및 저장
 
-정리된 정보를 구조화된 마크다운 문서로 생성하고, **`obsidian-document-policy` 스킬을 참조하여 Obsidian vault에 저장**합니다.
+정리된 정보를 구조화된 마크다운 문서로 생성하고, **Read 도구로 `~/.claude/policies/obsidian-document-policy.md`를 읽어 vault 경로, 파일명 규칙, 태그 체계, frontmatter 구조를 확인한 후 Obsidian vault에 저장**합니다.
 
 ## QA 문서 템플릿
 
@@ -189,7 +187,7 @@ QA 테스트 결과, 이슈 내용, 조치 사항을 분석하여 구조화된 Q
 
 ## 문서 저장
 
-QA 문서 작성 완료 후, `obsidian-document-policy` 스킬을 참조하여 다음과 같이 저장합니다:
+QA 문서 작성 완료 후, Read 도구로 `~/.claude/policies/obsidian-document-policy.md`를 읽어 저장 규칙을 확인하고 다음과 같이 저장합니다:
 
 1. **프로젝트명 확인**: 사용자에게 프로젝트명 재확인
 2. **Frontmatter 생성**:
@@ -201,7 +199,7 @@ QA 문서 작성 완료 후, `obsidian-document-policy` 스킬을 참조하여 �
 3. **파일명**: `qa-{YYYY-MM-DD_HH-mm}.md`
 4. **저장 경로**: `~/OneDrive/my-obsidian-vault/002-PROJECTS/{프로젝트명}/`
 
-자세한 저장 규칙은 `obsidian-document-policy` 스킬 참조.
+자세한 저장 규칙은 `~/.claude/policies/obsidian-document-policy.md` 참조.
 
 ## Category 분류
 
@@ -234,5 +232,5 @@ Assistant:
 1. [정보 수집] 프로젝트명, 테스트 범위, 환경, 이슈 내용 등 질문
 2. [이슈 분류] Severity, Category, Status별로 분류
 3. [조치 정리] 담당자, 완료일, 조치 내용, 검증 방법 정리
-4. [문서 생성] obsidian-document-policy 참조하여 저장
+4. [문서 생성] Read `~/.claude/policies/obsidian-document-policy.md` 후 저장
 ```

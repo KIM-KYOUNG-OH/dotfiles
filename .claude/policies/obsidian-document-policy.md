@@ -1,11 +1,7 @@
 ---
 name: obsidian-document-policy
-description: Obsidian vault 문서 저장 통합 정책. Hierarchical tags, frontmatter, 파일명, 저장 경로 규칙 정의. 모든 Obsidian 저장 스킬이 참조.
-triggers:
-  - obsidian 저장 정책
-  - obsidian document policy
-  - vault 저장 규칙
-  - obsidian tags
+description: Obsidian vault 문서 저장 통합 정책. skill에서 필요 시 Read 도구로 명시적 참조.
+type: policy
 ---
 
 # Obsidian Document Policy
@@ -326,15 +322,15 @@ audience: {대상 독자}
 - Wiki-link: `[[다른 노트]]`
 - 외부 링크: `[제목](URL)`
 
-## 7. 참조 스킬
+## 7. 참조 방법
 
-이 정책을 참조하는 스킬들:
+이 정책을 참조하는 스킬들은 다음과 같이 명시적으로 파일을 읽어야 합니다:
 
-```yaml
-requires:
-  - obsidian-document-policy
+```
+Read 도구로 ~/.claude/policies/obsidian-document-policy.md 를 읽어 정책을 확인
 ```
 
+**참조하는 스킬들:**
 - `issue-bug-report`: 버그 리포트 생성
 - `issue-qa-doc`: QA 문서 생성
 - `issue-tech-doc-guide`: 기술 문서 생성
@@ -396,4 +392,4 @@ tags:
 
 **버전**: 1.1.0
 **최종 수정**: 2026-02-11
-**관리**: obsidian-document-policy 스킬
+**관리**: .claude/policies/obsidian-document-policy.md
