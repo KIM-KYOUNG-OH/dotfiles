@@ -84,11 +84,15 @@ fi
    - created_at: 현재 obsidian 파일 생성 시점
    - source: 원본 YouTube URL
 
-3. **번역 및 요약**
-   - 아래 규칙(`## 문서 번역 및 요약 규칙`)에 따라 내용을 정리해서 yaml frontmatter를 포함한 obsidian file로 저장
+3. **문서 정책 확인**
+   - `~/.claude/policies/obsidian-document-policy.md` 를 Read 도구로 읽어 frontmatter 구조, 태그 체계, 파일명 규칙, 저장 경로 정책을 확인
 
-4. **태그 부여**
-   - hierarchical tagging 규칙은 `~/.claude/commands/obsidian/add-tag.md` 에 정의된 규칙을 준수
+4. **번역 및 요약**
+   - 아래 규칙(`## 문서 번역 및 요약 규칙`)에 따라 내용을 정리해서 yaml frontmatter를 포함한 obsidian file로 저장
+   - frontmatter 구조, 태그 체계, 파일명 규칙은 위 정책을 따름
+
+5. **태그 부여**
+   - hierarchical tagging 규칙은 `~/.claude/policies/obsidian-document-policy.md` 의 태그 체계와 `~/.claude/commands/obsidian/add-tag.md` 에 정의된 규칙을 준수
 
 ## yaml frontmatter 예시
 

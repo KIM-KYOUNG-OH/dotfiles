@@ -336,6 +336,9 @@ Read 도구로 ~/.claude/policies/obsidian-document-policy.md 를 읽어 정책�
 - `issue-tech-doc-guide`: 기술 문서 생성
 - `obsidian:add-tag`: 태그 자동 부여
 - `obsidian:add-tag-and-move-file`: 태그 + 파일 이동
+- `obsidian:summarize-article`: 기술 문서 요약
+- `obsidian:summarize-youtube`: YouTube 영상 요약
+- `obsidian:batch-summarize-urls`: URL 일괄 요약
 - (향후 추가될 모든 Obsidian 저장 스킬)
 
 ## 8. 실제 적용 예시
