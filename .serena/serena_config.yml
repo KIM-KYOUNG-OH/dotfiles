@@ -55,15 +55,7 @@ record_tool_usage_stats: false
 token_count_estimator: TIKTOKEN_GPT4O
 
 # the list of registered project paths (updated automatically).
-projects:
-- /Users/msbaek
-- ~/OneDrive/my-obsidian-vault
-- /Users/msbaek/dotfiles
-- /Users/msbaek/git/kt4u/BO-query
-- /Users/msbaek/git/kt4u/cs-rag
-- /Users/msbaek/git/kt4u/ktown4u-masking
-- /Users/msbaek/git/kt4u/plan-docs
-- /Users/msbaek/git/vault-intelligence
+projects: []
 
 # fixed set of tools to use as the base tool set (if non-empty), replacing Serena's default set of tools.
 # This cannot be combined with non-empty excluded_tools or included_optional_tools.
@@ -89,7 +81,7 @@ ls_specific_settings: {}
 #      (requires the plugin to be installed and the project being worked on to be open
 #      in your IDE).
 language_backend: LSP
-                # - ~/git/project1
+                                                                # - ~/git/project1
   # - ~/git/project2
 base_modes:
 
@@ -99,3 +91,23 @@ base_modes:
 default_modes:
 - interactive
 - editing
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
+ignored_paths: []
+
+# time budget (seconds) for requests when tools request symbol info (currently
+# only supported for LSP-based tools).
+# If the budget is exceeded, Serena stops issuing further symbol-info-related
+# requests and returns partial info results.
+# 0 disables the budget (no early stopping). Negative values are invalid.
+# This is an advanced setting that can help alleviate problems with LSP servers
+# that have a slow implementation of request_hover (clangd is one of those)
+# or with tool calls that find very many symbols.
+# Can be overridden in project.yml.
+symbol_info_budget: 10.0
