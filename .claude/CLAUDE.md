@@ -71,13 +71,21 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 ### when starting a new session
 
 <when-starting-a-new-session>
-Read the plan file used in this project to understand the work completed so far and inform me of the next steps to proceed with.
+1. `PROJECT_ROOT/.claude/plans/` 하위에 날짜 폴더(`YYYY-MM-DD-*`)가 있는지 탐색한다.
+2. 날짜 폴더가 있으면:
+   a. 각 폴더의 `INDEX.md`에서 `Status: active`인 항목을 찾는다.
+   b. Active 폴더의 resume point에서 작업을 재개한다.
+   c. 글로벌 `INDEX.md`가 있으면 참고하되, 폴더별 `INDEX.md`를 우선한다.
+3. 날짜 폴더가 없으면 루트의 기존 plan 파일들로 fallback한다.
+4. 사용자에게 현재 상태와 다음 단계를 보고한다.
 </when-starting-a-new-session>
 
 <session-start-hook>
   <EXTREMELY_IMPORTANT>
-  You have Superpowers. Invoke `/superpowers:using-superpowers` skill at session start.
-  </EXTREMELY_IMPORTANT>
+  You have Superpowers.
+
+**RIGHT NOW, go read**: @/Users/kyoungokim/.claude/plugins/cache/claude-plugins-official/superpowers/4.2.0/skills/using-superpowers/SKILL.md
+</EXTREMELY_IMPORTANT>
 </session-start-hook>
 
 ### when executing a new task
@@ -85,6 +93,44 @@ Read the plan file used in this project to understand the work completed so far 
 <when-executing-a-new-task>
 Each task is executed by launching a new sub-agent, preventing context exhaustion in the main session.
 </when-executing-a-new-task>
+
+### Action Principles
+
+Only implement changes when explicitly requested. When unclear, investigate and recommend first.
+
+<do_not_act_before_instructions>
+Do not jump into implementation or change files unless clearly instructed to make changes. When the user's intent is ambiguous, default to providing information, ask question to user, doing research, and providing recommendations rather than taking action. Only proceed with edits, modifications, or implementations when the user explicitly requests them.
+
+Exception: 명시적 버그 리포트(에러 로그, 실패 테스트, CI 실패)를 받은 경우, 조사→수정→검증을 자율적으로 진행한다. 사용자 컨텍스트 스위칭을 최소화한다.
+</do_not_act_before_instructions>
+
+### Augmented Coding Principles
+
+Always-on principles for AI collaboration. (Source: [Augmented Coding Patterns](https://lexler.github.io/augmented-coding-patterns/))
+
+<active_partner>
+No silent compliance. Push back on unclear instructions, challenge incorrect assumptions, and disagree when something seems wrong.
+- Unclear instructions → explain interpretation before executing
+- Contradictions or impossibilities → flag immediately
+- Uncertainty → say "I don't know" honestly
+- Better alternative exists → propose it proactively
+</active_partner>
+
+<check_alignment_first>
+Demonstrate understanding before implementation. Show plans, diagrams, or architecture descriptions to verify alignment before writing code. 5 minutes of alignment beats 1 hour of coding in the wrong direction.
+</check_alignment_first>
+
+<noise_cancellation>
+Be succinct. Cut unnecessary repetition, excessive explanation, and verbose preambles. Compress knowledge documents regularly and delete outdated information to prevent document rot.
+</noise_cancellation>
+
+<offload_deterministic>
+Don't ask AI to perform deterministic work directly. Ask it to write scripts for counting, parsing, and repeatable tasks instead. "Use AI to explore. Use code to repeat."
+</offload_deterministic>
+
+<canary_in_the_code_mine>
+Treat AI performance degradation as a code quality warning signal. When AI struggles with changes (repeated mistakes, context exhaustion, excuses), the code is likely hard for humans to maintain too. Don't blame the AI — consider refactoring.
+</canary_in_the_code_mine>
 
 ### Code Investigation
 
@@ -94,6 +140,11 @@ Never speculate without reading code. Always open and verify files before answer
 Never speculate about code you have not opened. If the user references a specific file, you MUST read the file before answering. Make sure to investigate and read relevant files BEFORE answering questions about the codebase. Never make any claims about code before investigating unless you are certain of the correct answer - give grounded and hallucination-free answers.
 ALWAYS read and understand relevant files before proposing code edits. Be rigorous and persistent in searching code for key facts. Thoroughly review the style, conventions, and abstractions of the codebase before implementing new features or abstractions.
 </investigate_before_answering>
+
+<root_cause_analysis>
+Find root causes. No temporary fixes. Senior developer standards apply.
+Don't patch symptoms — trace the actual source of the problem before implementing a fix.
+</root_cause_analysis>
 
 ### Quality Control
 
@@ -106,6 +157,12 @@ If the task is unreasonable or infeasible, or if any of the tests are incorrect,
 <reduce_file_creation>
 If you create any temporary new files, scripts, or helper files for iteration, clean up these files by removing them at the end of the task.
 </reduce_file_creation>
+
+<elegance_check>
+For changes touching 50+ lines or introducing new abstractions: pause and ask "is there a more elegant way?" before finalizing.
+Skip this for simple, obvious fixes.
+Challenge your own work before presenting it.
+</elegance_check>
 
 ### Long-running Tasks
 
@@ -141,7 +198,9 @@ To take advantage of subagent orchestration:
 1. Ensure well-defined subagent tools: Have subagent tools available and described in tool definitions.
 2. Let Claude orchestrate naturally: Claude will delegate appropriately without explicit instruction.
 3. Adjust conservativeness if needed: Only delegate to subagents when the task clearly benefits from a separate agent with a new context window.
-   </subagent_orchestration>
+4. 리서치, 탐색, 병렬 분석 작업은 적극적으로 subagent에 위임하여 메인 컨텍스트 보호.
+5. One task per subagent for focused execution.
+</subagent_orchestration>
 
 <use_parallel_tool_calls>
 If you intend to call multiple tools and there are no dependencies between the tool calls, make all of the independent tool calls in parallel. Prioritize calling tools simultaneously whenever the actions can be done in parallel rather than sequentially. For example, when reading 3 files, run 3 tool calls in parallel to read all 3 files into context at the same time. Maximize use of parallel tool calls where possible to increase speed and efficiency. However, if some tool calls depend on previous calls to inform dependent values like the parameters, do NOT call these tools in parallel and instead call them sequentially. Never use placeholders or guess missing parameters in tool calls.
@@ -149,14 +208,26 @@ If you intend to call multiple tools and there are no dependencies between the t
 
 ### Communication
 
-Answer in Korean. Add "Uncertainty Map" section at the end of responses.
+Korean by default. Respect user's tool choices.
 
 <communication_style>
 
-- Answer in Korean
-- Reference user profile: ~/git/aboutme/AI-PROFILE.md
-- Add "Uncertainty Map" section at the end of responses (low confidence areas, simplifications, opinions that could change with follow-up questions)
-  </communication_style>
+**Language:**
+- 응답/설명: 한국어
+- 커밋 메시지: 한국어 conventional commits (type/scope는 영어)
+- 코드 주석: 영어
+- 기술 용어: 첫 언급 시 영어 병기
+- 사용자 프로필: ~/git/aboutme/AI-PROFILE.md 참조
+
+**Approach:**
+- 사용자가 도구를 지정하면 해당 도구만 사용 (대체 금지)
+- 인프라 변경(git remote, 빌드 설정, 의존성) 전 반드시 확인
+- 광범위한 리팩토링 대신 요청된 부분만 최소 변경
+
+**Output:**
+- 응답 끝에 "Uncertainty Map" 섹션 추가
+
+</communication_style>
 
 ### Work Patterns
 
@@ -165,10 +236,62 @@ Use plan mode before starting projects. Verify API/SDK usage with CONTEXT7 MCP.
 <work_patterns>
 
 - Always start in plan mode before working on any project
-- Save plans to PROJECT_ROOT/.claude/plans/[planname].md
-- Update the plan as work progresses
+- If something goes sideways, STOP and re-plan immediately
+- Use plan mode for verification steps, not just building
 - When using APIs, SDKs, or libraries, use CONTEXT7 MCP tool to verify correct usage before proceeding
-  </work_patterns>
+
+Plan Folder Structure:
+- 새 작업 시작 시 `PROJECT_ROOT/.claude/plans/YYYY-MM-DD-kebab-case-topic/` 폴더를 생성한다.
+  - 날짜: 작업 시작일
+  - topic: Claude가 작업 내용에서 3~5단어 kebab-case 이름을 자동 생성
+  - 예: `.claude/plans/2026-02-14-plan-folder-isolation/`
+- 폴더 안에 plan 파일과 `INDEX.md`를 저장한다.
+- Update the plan as work progresses.
+- INDEX.md의 Progress 섹션을 task tracking에 활용 (tasks/todo.md 대신 기존 plan 폴더 구조 사용)
+- 각 단계에서 변경 사항 요약 기록
+
+폴더별 INDEX.md:
+- 해당 작업의 상태를 관리하는 파일. 세션 시작 시 이 파일로 resume.
+- Structure:
+  ```
+  # Plan: 작업 제목
+  Created: YYYY-MM-DD
+  Status: active|completed|paused
+
+  ## Progress
+  - [x] 완료된 작업
+  - [ ] 미완료 작업
+
+  ## Resume Point
+  구체적인 재개 지점 (파일명, 단계 번호, 남은 작업)
+
+  ## Files
+  - plan-file.md — 설명
+  ```
+- "resume point" must be specific enough to continue immediately in a new session
+
+글로벌 INDEX.md (`PROJECT_ROOT/.claude/plans/INDEX.md`):
+- 폴더 목록과 한줄 요약만 관리 (참고용)
+- Structure:
+  ```
+  # Plans Index
+  Last updated: YYYY-MM-DD
+
+  ## Active
+  - [YYYY-MM-DD-topic/](YYYY-MM-DD-topic/) — 요약
+
+  ## Completed
+  - [YYYY-MM-DD-topic/](YYYY-MM-DD-topic/) — 요약 | completed: YYYY-MM-DD
+
+  ## Paused
+  - [YYYY-MM-DD-topic/](YYYY-MM-DD-topic/) — 요약 | reason
+  ```
+- Update whenever a plan folder is created, completed, or paused
+
+하위 호환:
+- 기존 루트의 랜덤 이름 plan 파일(.claude/plans/*.md)은 그대로 유지
+- 날짜 폴더가 없는 프로젝트에서는 기존 방식으로 동작
+</work_patterns>
 
 ### Git Workflow
 
@@ -213,6 +336,15 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
 - Write tool is more reliable across different shell configurations
 </git_commit_messages>
 
+<use_commit_skill>
+커밋 생성 시 항상 /commit 스킬을 사용할 것.
+- 자동 conventional commit 메시지 생성
+- 내장 한글 인코딩 안전성 (Write tool 사용)
+- `--push`: 커밋 후 자동 push
+- `--amend`: 이전 커밋 수정
+수동 git commit은 /commit이 불가능한 환경에서만 허용.
+</use_commit_skill>
+
 ### Tool Preferences
 
 Preferred tools for search and exploration.
@@ -223,7 +355,75 @@ Preferred tools for search and exploration.
 | Syntax-aware search | `sg --lang <lang> -p '<pattern>'` | Optimized for structural matching |
 | Text search | `rg` (ripgrep) | Faster than grep, respects .gitignore |
 | File finding | `fd` | Faster and more intuitive than find |
+| Web content | Playwright MCP 우선 | 동적/인증 콘텐츠 지원, Cloudflare 우회 |
+| **코드 탐색 (Java)** | **LSP (JDTLS) 필수** | **정의/참조/구현/호출 관계를 정확하게 탐색** |
+| Large files (>500줄) | Serena/LSP symbolic tools | Read보다 효율적 |
+
+**Web Content 규칙:**
+- 1순위: Playwright MCP (browser_navigate → browser_snapshot)
+- 2순위: WebFetch (정적 public 페이지만)
+- 금지: fetch/bash curl/wget (렌더링 불가, 403 차단)
+
+**File Reading 안전:**
+- 1000줄 초과 파일: offset/limit 파라미터 사용
+- Edit 전: old_string 고유성 확인
 </tool_preferences>
+
+### LSP-First Development
+
+Java 프로젝트(특히 레거시)에서 LSP(JDTLS)를 최우선으로 활용. Grep/Read 전에 항상 LSP를 먼저 시도.
+
+<lsp_enforcement>
+**CRITICAL: LSP 도구를 사용할 수 있는 환경에서는 반드시 LSP를 먼저 사용하라. 이것은 선택이 아니라 의무이다.**
+
+**LSP 필수 사용 상황:**
+
+| 작업 | LSP Operation | Grep/Read 대신 LSP를 써야 하는 이유 |
+|------|---------------|--------------------------------------|
+| 심볼 정의 찾기 | `goToDefinition` | 정확한 위치, 상속/인터페이스 고려 |
+| 참조 추적 | `findReferences` | 모든 사용처를 정확하게 찾음 |
+| 타입/문서 확인 | `hover` | IDE 수준의 타입 정보 제공 |
+| 파일 구조 파악 | `documentSymbol` | 클래스/메서드 목록을 구조적으로 반환 |
+| 인터페이스 구현체 찾기 | `goToImplementation` | 상속 계층 정확히 탐색 |
+| 호출 관계 파악 | `incomingCalls` / `outgoingCalls` | 콜 그래프를 정확하게 추적 |
+| 워크스페이스 심볼 검색 | `workspaceSymbol` | 프로젝트 전체에서 심볼 검색 |
+
+**Java Legacy Project 규칙 (JDTLS):**
+- Java 파일 작업 시 LSP가 활성화되어 있으면 **반드시** LSP를 1순위로 사용
+- `findReferences`로 변경 영향 범위를 파악한 후에만 리팩토링 진행
+- `goToImplementation`으로 인터페이스/추상 클래스의 구현체를 정확히 확인
+- `incomingCalls`로 메서드 호출자를 추적하여 변경의 파급 효과 분석
+- Legacy 코드의 복잡한 상속 구조는 `goToDefinition` + `goToImplementation` 조합으로 탐색
+- 대규모 Java 파일은 `documentSymbol`로 구조 먼저 파악, 필요한 심볼만 선택적으로 Read
+
+**의사결정 흐름:**
+```
+코드 탐색이 필요한가?
+├─ 심볼의 정의/참조/구현을 찾는가? → LSP 사용 (MUST)
+├─ 파일 구조를 파악하는가? → LSP documentSymbol (MUST)
+├─ 호출 관계를 추적하는가? → LSP incomingCalls/outgoingCalls (MUST)
+├─ 텍스트 패턴 검색인가? (로그 메시지, 설정값 등) → Grep 허용
+└─ 파일 전체 내용이 필요한가? → Read 허용 (단, 500줄 이하)
+```
+
+**금지 패턴:**
+- ❌ 클래스/메서드 정의를 Grep으로 찾기 → LSP `goToDefinition` 사용
+- ❌ 메서드 사용처를 Grep으로 찾기 → LSP `findReferences` 사용
+- ❌ 인터페이스 구현체를 Grep으로 찾기 → LSP `goToImplementation` 사용
+- ❌ 대형 Java 파일을 Read로 전체 읽기 → LSP `documentSymbol` → 필요한 심볼만 Read
+- ❌ 메서드 호출 관계를 Grep으로 추적 → LSP `incomingCalls`/`outgoingCalls` 사용
+
+**허용 패턴:**
+- ✅ 문자열 리터럴, 설정값, 로그 메시지 검색 → Grep
+- ✅ LSP 서버가 응답하지 않거나 미지원 파일 → Grep/Read fallback
+- ✅ 500줄 이하 소규모 파일 전체 읽기 → Read
+- ✅ 비-Java 파일 (XML, properties, YAML 등) → Grep/Read
+
+**LSP 미응답 시 fallback 절차:**
+1. LSP 호출 시도 (필수)
+2. 에러 또는 타임아웃 발생 시 사용자에게 보고
+3. 사용자 승인 후 Grep/Read로 대체
+</lsp_enforcement>
 
 ### Large-scale Changes
 
@@ -241,6 +441,11 @@ Record useful discoveries during tasks to ai-learnings.md.
 
 <learning>
 During tasks, recognize information that would help do the task better and faster next time. Save such learnings to ai-learnings.md file in the project.
+
+Self-improvement loop:
+- After ANY correction from the user: update ai-learnings.md with the pattern
+- Write rules that prevent the same mistake
+- Review learnings at session start for relevant project context
 </learning>
 
 ### Superpowers Integration
@@ -253,7 +458,21 @@ When using superpowers:brainstorming, automatically incorporate context from ~/g
 - TDD/OOP/DDD 중심 설계 선호
 - 단순성과 실용성 우선 (YAGNI, DRY)
 - 복잡한 작업은 2-5분 단위로 분해
+
+Prompt Contracts 프레임워크를 brainstorming 과정에 적용 — **반드시 /prompt-contracts 스킬을 호출**하여 상세 가이드를 로드할 것:
+- Goal 도출 시: "완료"를 1분 내 검증 가능하게 정의 (테스트 가능성이 핵심)
+- Constraints 식별 시: 기술 스택, 패턴, 금지 항목을 비협상 경계로 명시
+- Failure Conditions 도출 시: "이것이 있으면 수용 불가" 목록 작성 (가드레일)
+- 설계 제안 시 각 접근법에 대해 Goal/Constraints/Failure Conditions 명시
 </brainstorming-context>
+
+<writing-plans-context>
+When using superpowers:writing-plans, apply Prompt Contracts 프레임워크 — **반드시 /prompt-contracts 스킬을 호출**하여 상세 가이드를 로드할 것:
+- 각 작업(task)에 Output Format 명시: 파일 위치, 함수 시그니처, 반환 타입
+- 각 작업에 Failure Conditions 포함: "이 조건이면 작업 미완료" 기준
+- Plan 전체에 Goal 명시: 테스트 가능한 성공 기준
+- Plan 전체에 Constraints 명시: 비협상 제약 사항
+</writing-plans-context>
 
 <superpowers-workflow>
 For complex development tasks, follow this sequence:
@@ -265,17 +484,20 @@ TDD 강제 원칙:
 
 - NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 - 코드를 먼저 작성했다면? 삭제하고 처음부터.
-  </superpowers-workflow>
+</superpowers-workflow>
 
 <verification-before-completion>
 Before marking any task as complete, verify:
-- [ ] 모든 테스트 통과
-- [ ] plan/todo 문서에 완료 상태 반영
-- [ ] 다음 세션을 위한 컨텍스트 기록
-- [ ] git worktree 사용 시 격리 상태 확인
+- [ ] All tests pass
+- [ ] Plan/todo documents reflect completed status
+- [ ] Diff behavior between main and changes
+- [ ] "Would a staff engineer approve this?"
+- [ ] Update 폴더별 INDEX.md progress (resume point, status, task counts)
+- [ ] Update 글로벌 INDEX.md 상태 (active/completed/paused) if it exists
+- [ ] Context recorded for next session
+- [ ] Git worktree isolation confirmed (if applicable)
 
-복구 용이성 확보:
-
-- 각 작업 단위로 커밋
-- 문제 발생 시 롤백 가능한 상태 유지
-  </verification-before-completion>
+Recoverability:
+- Commit after each meaningful unit of work
+- Keep state rollback-friendly at all times
+</verification-before-completion>

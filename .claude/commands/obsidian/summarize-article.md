@@ -107,3 +107,12 @@ Constraints:
 
 Remember to include all necessary subsections as described in the summary structure.
 ```
+
+## 진행 상황 모니터링
+
+메인 세션에서 현재 진행 중인 백그라운드 작업을 확인하려면:
+
+`.claude/article-progress/` 폴더의 JSON 파일들을 읽어서 상태를 보고합니다:
+- `processing`: "처리 중: URL"
+- `completed`: "완료: URL → 파일경로"
+- `failed`: "실패: URL (에러메시지)"

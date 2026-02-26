@@ -60,7 +60,7 @@ alias vi='nvim'
 alias gl='git log'
 alias find_wifi_pwd='security find-generic-password -wa '
 
-alias cat='bat --plain --wrap character'
+# alias cat='bat --plain --wrap character'
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 export PYSPARK_DRIVER_PYTHON=jupyter
@@ -220,8 +220,9 @@ FUNCNEST=100
 # Add to ~/.zshrc or ~/.bashrc
 alias cl='claude'
 alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
-alias vis='python -m src --vault-path $HOME/OneDrive/my-obsidian-vault '
-alias bedrock='claude --settings ~/.claude/settings.bedrock.json --dangerously-skip-permissions'
+# Headless mode aliases
+alias cc-commit='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit" --allowedTools "Bash,Read,Grep"'
+alias cc-push='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit --push" --allowedTools "Bash,Read,Grep"'
 alias plugins-cc='npx claude-code-templates@latest --plugins'
 alias chats-cc='npx claude-code-templates@latest --chats'
 alias clean-mac='npx mac-cleaner-cli'
@@ -237,3 +238,8 @@ export ENABLE_LSP_TOOLS=1
 # 활성화 이후 `/context`로 확인해 보면 MCP tools 항목이 사라진 것을 볼 수 있습니다.
 # https://github.com/anthropics/claude-code/issues/12836
 export ENABLE_TOOL_SEARCH=true
+
+alias agfu='cargo install --git https://github.com/subinium/agf.git'
+
+# Dia browser with remote debugging for Playwright CDP
+alias dia='open -a Dia --args --remote-debugging-port=9222'

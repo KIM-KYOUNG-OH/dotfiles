@@ -124,3 +124,74 @@ source ~/.zsh.after/ktown4u.zsh
 source ~/.zsh.after/kko.zsh
 # source ~/.zsh.after/claude_desktop_config.zsh
 
+# Q post block. Keep at the bottom of this file.export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Added by LM Studio CLI (lms)
+# export PATH="$PATH:$HOME/.cache/lm-studio/bin"
+
+# Add JBang to environment
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
+
+# bun completions (commented out to use npm global claude)
+# [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun (commented out to use npm global claude)
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
+
+source $HOME/.config/broot/launcher/bash/br
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# Task Master aliases added on 2025. 7. 17.
+alias tm='task-master'
+alias taskmaster='task-master'
+
+# Node.js LTS 업데이트 함수
+update-node-lts() {
+    echo "Updating to latest LTS..."
+    nvm install --lts
+    nvm alias default lts/\*
+    nvm use default
+    echo "Node.js updated to: $(node --version)"
+}
+
+update-claude-code() {
+    echo "Updating Claude Code..."
+    npm update -g @anthropic-ai/claude-code
+    echo "Claude Code updated to: $(claude --version)"
+}
+
+alias add_serena='~/bin/add-serena.sh'
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+export EDITOR="nvim"
+
+# Claude Code max output tokens
+export CLAUDE_CODE_MAX_OUTPUT_TOKENS=128000
+
+# rm-safely - Safe rm command
+source "~/.rm-safely" >/dev/null 2>&1
+
+# Auto-rebuild npm native modules after brew upgrade (cmem 등)
+brew() {
+  command brew "$@"
+  if [[ "$1" == "upgrade" ]]; then
+    echo "🔄 Rebuilding cmem native modules..."
+    (cd /opt/homebrew/lib/node_modules/@colbymchenry/cmem 2>/dev/null && npm rebuild better-sqlite3 2>/dev/null) && \
+      echo "✅ cmem rebuilt" || echo "⚠️ cmem rebuild skipped (not installed?)"
+  fi
+}
+
+# agf - AI Agent Session Finder
+eval "$(agf init zsh)"
