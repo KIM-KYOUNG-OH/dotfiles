@@ -194,4 +194,4 @@ brew() {
 }
 
 # agf - AI Agent Session Finder
-eval "$(agf init zsh)"
+command -v agf &>/dev/null && eval "$(agf init zsh)"
