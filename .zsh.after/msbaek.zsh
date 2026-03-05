@@ -220,6 +220,7 @@ FUNCNEST=100
 # Add to ~/.zshrc or ~/.bashrc
 alias cl='claude'
 alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
+alias cldw='claude --dangerously-skip-permissions --teammate-mode tmux --tmux -w'
 # Headless mode aliases
 alias cc-commit='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit" --allowedTools "Bash,Read,Grep"'
 alias cc-push='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit --push" --allowedTools "Bash,Read,Grep"'
